@@ -39,6 +39,9 @@ const ContactForm = () => {
             Notiflix.Notify.warning(`${name} is already in contacts`);
         } else {
             dispatch(addContact({ name, number }));
+            Notiflix.Notify.success(
+                'Contact successfully added to contact book'
+            );
         }
 
         setName('');
