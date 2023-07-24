@@ -8,7 +8,9 @@ import {
 } from './ContactList.styled';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contactsSlice';
+import { useEffect } from 'react';
+
+import { fetchContacts, deleteContact } from 'redux/operations';
 
 const ContactList = () => {
     const contacts = useSelector(state => state.contacts.contactsList);
@@ -21,6 +23,10 @@ const ContactList = () => {
             contact.name.toLowerCase().includes(filter.toLowerCase())
         );
     };
+
+    useEffect(() => {
+        dispatch(fetchContacts());
+    }, [dispatch]);
 
     const vilibleContact = getVisibleContacts();
 
